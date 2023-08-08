@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">booklearn</string>
+    <string name="profile">profile</string>
+    <string name="about">about</string>
+    <string name="favourite">favourite</string>
+    <string name="dashboard">dashboard</string>
+    <string name="navigation_drawer">Learner Here</string>
+    <string name="close_drawer">Close Drawer</string>
+    <string name="open_drawer">Open Drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="favouriteFrament">favourite Fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
