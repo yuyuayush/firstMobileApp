@@ -19,9 +19,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var toolbar: Toolbar
     lateinit var frameLayout: FrameLayout;
     lateinit var navigationView: NavigationView
+    lateinit var previousMenuItem: MenuItem
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+       openDashboard()
 
       drawerLayout = findViewById(R.id.drawerLayout)
         coordinatorLayout=findViewById(R.id.coordinatorLayout)
@@ -32,27 +34,41 @@ class MainActivity : AppCompatActivity() {
         //ha unko clickable bnna h;
         navigationView.setNavigationItemSelectedListener {
             //it is using for giving selected item;
+            if(previousMenuItem !=null){
+                previousMenuItem?.isChecked=false;
+            }
+            //chekable use for active the menut item;
+//            and checked insure it actually checked or not;
+            it.isCheckable=true;
+            it.isChecked=true;
+            previousMenuItem =it;
+
             when(it.itemId){
                 R.id.dashboard->{
                     supportFragmentManager.beginTransaction().replace(R.id.frame,DashBoardFragment())
                         .addToBackStack("Dashboardf")
                         .commit()
+                    supportActionBar?.title="Dashboard"
                     drawerLayout.closeDrawers()
                     }
                 R.id.favourite->{
                     supportFragmentManager.beginTransaction().replace(R.id.frame,favouriteFragment())
                         .addToBackStack("Favourite")
                         .commit()
+                    supportActionBar?.title="Favourite"
                     drawerLayout.closeDrawers()  }
                 R.id.profile->{
                     supportFragmentManager.beginTransaction().replace(R.id.frame,profileFrament())
                         .addToBackStack("Profile")
                         .commit()
+                    supportActionBar?.title="Profile"
+
                     drawerLayout.closeDrawers() }
                 R.id.about->{
                     supportFragmentManager.beginTransaction().replace(R.id.frame,aboutFragment())
                         .addToBackStack("About")
                         .commit()
+                    supportActionBar?.title="About"
                     drawerLayout.closeDrawers()
                          }
             }
@@ -90,6 +106,19 @@ class MainActivity : AppCompatActivity() {
     }
     return super.onOptionsItemSelected(item)
     }
+    fun openDashboard(){
+        supportFragmentManager.beginTransaction().replace(R.id.frame,DashBoardFragment()).addToBackStack("dashbaord").commit()
+        supportActionBar?.title="Dashboard";
+        navigationView.setCheckedItem(R.id.dashboard)
+    }
 
+    //for onbacked propertyr kahi bhi ho dubara s dash m aja an
+    override fun onBackPressed() {
+        val frag  = supportFragmentManager.findFragmentById(R.id.frame);
+        when(frag){
+            !is DashBoardFragment -> openDashboard()
+        else-> super.onBackPressed()
+    }
 
+    }
 }
