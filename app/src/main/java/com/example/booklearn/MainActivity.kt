@@ -19,19 +19,21 @@ class MainActivity : AppCompatActivity() {
     lateinit var toolbar: Toolbar
     lateinit var frameLayout: FrameLayout;
     lateinit var navigationView: NavigationView
-    lateinit var previousMenuItem: MenuItem
+     var previousMenuItem: MenuItem? = null;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-       openDashboard()
 
-      drawerLayout = findViewById(R.id.drawerLayout)
+
+        drawerLayout = findViewById(R.id.drawerLayout)
         coordinatorLayout=findViewById(R.id.coordinatorLayout)
         toolbar=findViewById(R.id.tool)
         frameLayout=findViewById(R.id.frame)
         navigationView=findViewById(R.id.navigationView);
         //now here we are usign navgation view is ke andr menu list
         //ha unko clickable bnna h;
+        openDashboard()
+
         navigationView.setNavigationItemSelectedListener {
             //it is using for giving selected item;
             if(previousMenuItem !=null){
@@ -46,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.dashboard->{
                     supportFragmentManager.beginTransaction().replace(R.id.frame,DashBoardFragment())
-                        .addToBackStack("Dashboardf")
+                        .addToBackStack("Dashboard")
                         .commit()
                     supportActionBar?.title="Dashboard"
                     drawerLayout.closeDrawers()
@@ -107,11 +109,13 @@ class MainActivity : AppCompatActivity() {
     return super.onOptionsItemSelected(item)
     }
     fun openDashboard(){
-        supportFragmentManager.beginTransaction().replace(R.id.frame,DashBoardFragment()).addToBackStack("dashbaord").commit()
+        val trans = supportFragmentManager.beginTransaction()
+            trans.replace(R.id.frame,DashBoardFragment())
+                trans.commit()
         supportActionBar?.title="Dashboard";
         navigationView.setCheckedItem(R.id.dashboard)
-    }
 
+    }
     //for onbacked propertyr kahi bhi ho dubara s dash m aja an
     override fun onBackPressed() {
         val frag  = supportFragmentManager.findFragmentById(R.id.frame);

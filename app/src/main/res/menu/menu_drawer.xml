@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
+<!--        this is using for single menu will select;-->
 
 <item  android:id="@+id/dashboard" android:icon="@drawable/ic_dashboard" android:title="@string/dashboard" />
 <item  android:id="@+id/favourite" android:icon="@drawable/ic_favourite"  android:title="@string/favourite" />
