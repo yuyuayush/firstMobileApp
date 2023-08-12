@@ -1,17 +1,23 @@
-package com.example.booklearn
+package com.example.booklearn.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.FrameLayout
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.booklearn.R
 import com.google.android.material.navigation.NavigationView
+import fragment.AboutFragment
+import fragment.DashBoardFragment
+import fragment.FavouriteFragment
+
+import fragment.profileFrament
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout;
@@ -46,28 +52,33 @@ class MainActivity : AppCompatActivity() {
             previousMenuItem =it;
 
             when(it.itemId){
-                R.id.dashboard->{
-                    supportFragmentManager.beginTransaction().replace(R.id.frame,DashBoardFragment())
+                R.id.dashboard ->{
+                    supportFragmentManager.beginTransaction().replace(
+                        R.id.frame,
+                        DashBoardFragment()
+                    )
                         .addToBackStack("Dashboard")
                         .commit()
                     supportActionBar?.title="Dashboard"
                     drawerLayout.closeDrawers()
                     }
-                R.id.favourite->{
-                    supportFragmentManager.beginTransaction().replace(R.id.frame,favouriteFragment())
+                R.id.favourite ->{
+                    supportFragmentManager.beginTransaction().replace(
+                        R.id.frame,FavouriteFragment()
+                    )
                         .addToBackStack("Favourite")
                         .commit()
                     supportActionBar?.title="Favourite"
                     drawerLayout.closeDrawers()  }
-                R.id.profile->{
-                    supportFragmentManager.beginTransaction().replace(R.id.frame,profileFrament())
+                R.id.profile ->{
+                    supportFragmentManager.beginTransaction().replace(R.id.frame, profileFrament())
                         .addToBackStack("Profile")
                         .commit()
                     supportActionBar?.title="Profile"
 
                     drawerLayout.closeDrawers() }
-                R.id.about->{
-                    supportFragmentManager.beginTransaction().replace(R.id.frame,aboutFragment())
+                R.id.about ->{
+                    supportFragmentManager.beginTransaction().replace(R.id.frame, AboutFragment())
                         .addToBackStack("About")
                         .commit()
                     supportActionBar?.title="About"
@@ -82,7 +93,10 @@ class MainActivity : AppCompatActivity() {
 
 //        this is function for drawer open close;
         // we have predefined object actionbardrawertoggle; the purpose of it was kaha p khulega ,clsoe ,open  and putting the actionbartoggle to drawerLayout;
-        var actionBarDrawerToggle = ActionBarDrawerToggle(this@MainActivity,drawerLayout,R.string.open_drawer,R.string.close_drawer)
+        var actionBarDrawerToggle = ActionBarDrawerToggle(this@MainActivity,drawerLayout,
+            R.string.open_drawer,
+            R.string.close_drawer
+        )
         //this is used to make the event
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
 //      this is used for open and close sync when hamburger click it turn icon into arrow and then wise verse;
@@ -110,7 +124,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun openDashboard(){
         val trans = supportFragmentManager.beginTransaction()
-            trans.replace(R.id.frame,DashBoardFragment())
+            trans.replace(R.id.frame, DashBoardFragment())
                 trans.commit()
         supportActionBar?.title="Dashboard";
         navigationView.setCheckedItem(R.id.dashboard)

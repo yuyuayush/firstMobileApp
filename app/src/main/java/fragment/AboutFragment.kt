@@ -1,17 +1,14 @@
-package com.example.booklearn
+package fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.booklearn.R
 
 
-class profileFrament : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
+class AboutFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -19,8 +16,9 @@ class profileFrament : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_frament, container, false)
+        return inflater.inflate(R.layout.fragment_about, container, false)
     }
+
 
 
 
