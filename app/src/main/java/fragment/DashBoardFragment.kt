@@ -62,7 +62,9 @@ class DashBoardFragment : Fragment() {
             }
         }
         layoutManager = LinearLayoutManager(activity)
-        val bookList = arrayListOf(
+        val
+
+                bookList = arrayListOf(
             "p.s Ilobe",
             "ganign",
             "ranin gs",
